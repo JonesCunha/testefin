@@ -1,11 +1,12 @@
+// ignore_for_file: camel_case_types, prefer_const_constructors, prefer_const_literals_to_create_immutables
+
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 import 'package:testefin/data/models/fiis_model.dart';
 
 class Ticker extends StatefulWidget {
   final FiisModel fii;
 
-  Ticker({super.key, required this.fii});
+  const Ticker({super.key, required this.fii});
 
   @override
   State<Ticker> createState() => _tickerState();
@@ -37,7 +38,7 @@ class _tickerState extends State<Ticker> {
                 Text('Ultimo Dividendo: ${widget.fii.lastDividend}'),
                 Text('Data Update: ${widget.fii.lastUpdate}'),
                 Text('Valor Mercado: ${widget.fii.netWorth}'),
-                component(widget.fii),
+                // component(widget.fii),
               ]),
             )
           ],

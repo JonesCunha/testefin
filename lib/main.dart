@@ -1,6 +1,12 @@
 // ignore_for_file: prefer_const_constructors
 import 'package:flutter/material.dart';
-import 'package:testefin/pages/my_home_page.dart';
+import 'package:testefin/pages/fiis_home_page.dart';
+import 'package:testefin/pages/fiis_wallet_page.dart';
+import 'package:testefin/pages/home_page.dart';
+import 'package:testefin/pages/settings_page.dart';
+import 'package:testefin/pages/stocks_home_page.dart';
+import 'package:testefin/themedata.dart';
+import 'package:testefin/utils/routes.dart';
 
 main() {
   //forçar o app nao girar a tela.
@@ -16,10 +22,17 @@ class FinancialAPP extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: MyHomePage(),
+      theme: themeData(),
+      initialRoute: AppRoutes.HOME,
+      // home: MyHomePage(),
+      routes: {
+          AppRoutes.HOME: (context) => HomePage(),
+          AppRoutes.FIISHOMEPAGE: (context) => Fiis_Home_Page(),
+          AppRoutes.SETTINGSPAGE: (context) => SettingsPage(),
+          AppRoutes.STOCKSHOMEPAGE: (context) => StocksHomePage(),
+          AppRoutes.FIISWALLETPAGE: (context) => FiisWallet(),
+        },
       //theme: Thema(),
     );
   }
-
-
 }

@@ -15,7 +15,10 @@ class FiisRepository implements IFiisRepository {
   @override
   Future<List<FiisModel>> getFiis(int value) async {
     // final String apiKey = '5OQDRGX69iwOXiYqNMyEFcDGsEsQZS2z';
-    const String apiUrl = 'https://servicehub.ddns.net/services/funds';
+    
+    const String apiUrl  = 'https://servicehub.ddns.net/services/funds';
+
+    // const String apiUrl = 'http://10.0.2.2:8080/funds';
 
     final response = await client.get(url: apiUrl);
 
@@ -28,6 +31,7 @@ class FiisRepository implements IFiisRepository {
               //fiis.add(fiisModel);
               )
           .toList();
+
 
       //remover os zerados
       List<FiisModel> fiis2 = fiis.where((element) => element.netWorth > 0).toList();
