@@ -35,7 +35,7 @@ class AppDrawer extends StatelessWidget {
               ListTile(
                 leading: const Icon(Icons.account_balance_wallet),
                 title: const Text('Carteira de Ações'),
-                onTap: () {},
+                onTap: () => Navigator.of(context).pushReplacementNamed(AppRoutes.STOCKSWALLETPAGE),
               ),
               const Divider(),
               ListTile(

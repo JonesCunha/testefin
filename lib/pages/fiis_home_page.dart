@@ -3,20 +3,20 @@ import 'package:intl/intl.dart';
 import 'package:testefin/data/http/http_client.dart';
 import 'package:testefin/data/models/fiis_model.dart';
 import 'package:testefin/data/repositories/fiis_reposity.dart';
+import 'package:testefin/pages/fiis_ticker.dart';
 import 'package:testefin/pages/stores/fiis_store.dart';
-import 'package:testefin/pages/ticker.dart';
 
 import '../components/app_drawer.dart';
 
-class Fiis_Home_Page extends StatefulWidget {
-  const Fiis_Home_Page({super.key});
+class FiisHomePage extends StatefulWidget {
+  const FiisHomePage({super.key});
 
   @override
-  State<Fiis_Home_Page> createState() => _Fiis_Home_PageState();
+  State<FiisHomePage> createState() => _FiisHomePageState();
 }
 
-class _Fiis_Home_PageState extends State<Fiis_Home_Page> {
-  TextEditingController _filteredItem = TextEditingController();
+class _FiisHomePageState extends State<FiisHomePage> {
+  final TextEditingController _filteredItem = TextEditingController();
 
   final FiisStore store = FiisStore(
     repository: FiisRepository(
@@ -74,7 +74,7 @@ class _Fiis_Home_PageState extends State<Fiis_Home_Page> {
       //   },
       //   child: const Icon(Icons.search),
       // ),
-      drawer: AppDrawer(),
+      drawer: const AppDrawer(),
       appBar: AppBar(
         backgroundColor: Colors.deepPurple,
         title: const Text(
@@ -125,14 +125,14 @@ class _Fiis_Home_PageState extends State<Fiis_Home_Page> {
                     child: TextField(
                       controller: _filteredItem,
                       onSubmitted: (value) => _onSubmit(value),
-                      decoration: InputDecoration(
+                      decoration: const InputDecoration(
                         labelText: 'Filtrar',
                         hintText: 'Digite um termo de pesquisa',
                         prefixIcon: Icon(Icons.search),
                       ),
                     ),
                   ),
-                  Container(
+                  SizedBox(
                     height: 550,
                     child: ListView.builder(
                       // gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
@@ -152,15 +152,14 @@ class _Fiis_Home_PageState extends State<Fiis_Home_Page> {
                             locale: 'pt_BR', symbol: 'R\$');
                         final netWorh = realFormat.format(item.netWorth);
                         final unitPrice = realFormat.format(item.unitPrice);
-                        final dailyLiquidity =
-                            realFormat.format(item.dailyLiquidity);
+                        // final dailyLiquidity = realFormat.format(item.dailyLiquidity);
                         final realYield =
                             (item.lastDividend / item.unitPrice) * 100;
 
                         return GestureDetector(
                           onTap: () => Navigator.of(context).push(
                             MaterialPageRoute(
-                              builder: (context) => Ticker(
+                              builder: (context) => TickerFiis(
                                 fii: item,
                               ),
                             ),
@@ -196,15 +195,15 @@ class _Fiis_Home_PageState extends State<Fiis_Home_Page> {
                                   ),
                                 ),
                                 Padding(
-                                  padding: EdgeInsets.all(4),
+                                  padding: const EdgeInsets.all(4),
                                   child: Column(
                                     crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [
                                       Text(
-                                        'Preco Unitario R\$ ${unitPrice}',
+                                        'Preco Unitario R\$ $unitPrice',
                                       ),
                                       Text(
-                                        'Valor Mercado R\$ ${netWorh}',
+                                        'Valor Mercado R\$ $netWorh',
                                       ),
                                       Text(
                                         'Yield Anual : % ${item.dividendYield.toStringAsFixed(2)}',
